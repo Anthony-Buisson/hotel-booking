@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User //implements UserInterface
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -101,11 +101,16 @@ class User //implements UserInterface
     }
 
     /**
-     * @return Collection|Role[]
+     * @return array | string[]
      */
-    public function getRoles(): Collection
+    public function getRoles(): array
     {
-        return $this->roles;
+        $roles = $this->roles->map(function($role){
+            return $role->getName();
+        })->toArray();
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
     }
 
     public function addRole(Role $role): self
