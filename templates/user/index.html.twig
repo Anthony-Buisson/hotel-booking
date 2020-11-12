@@ -22,9 +22,9 @@
                 <td>{{ user.email }}</td>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
                 <td>{{ user.password }}</td>
-                <td>
-                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+                <td class="d-flex">
+                    <a class="btn btn-primary" href="{{ path('user_show', {'id': user.id}) }}">show</a>
+                    <a class="btn btn-secondary" href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
