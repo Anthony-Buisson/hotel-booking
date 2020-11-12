@@ -6,12 +6,12 @@ use App\Entity\Booking;
 use App\Entity\Customer;
 use App\Entity\Option;
 use App\Entity\Room;
-use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 
-class BookingFixtures extends Fixture
+class BookingFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -88,5 +88,16 @@ class BookingFixtures extends Fixture
             }
         }
         $manager->flush();
+
+        //$user = $this->getReference('admin');
     }
+
+    public function getDependencies()
+    {
+        return array(
+             UserFixtures::class,
+        );
+    }
+
+
 }
