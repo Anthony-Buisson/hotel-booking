@@ -20,6 +20,7 @@ class UserType extends AbstractType
                 'choice_label' => 'name',
                 'choice_value' => 'id',
                 'mapped' => false,
+                'expanded' => true,
                 'multiple' => true
             ])
             ->add('password')
