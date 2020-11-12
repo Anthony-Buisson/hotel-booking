@@ -34,6 +34,16 @@ class Room
      */
     private $bookings;
 
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $price;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $number;
+
     public function __construct()
     {
         $this->options = new ArrayCollection();
@@ -107,6 +117,30 @@ class Room
                 $booking->setRoom(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(float $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getNumber(): ?int
+    {
+        return $this->number;
+    }
+
+    public function setNumber(int $number): self
+    {
+        $this->number = $number;
 
         return $this;
     }
